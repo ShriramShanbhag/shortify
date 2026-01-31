@@ -1,0 +1,29 @@
+{
+  "name": "shortify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShriramShanbhag/shortify.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ShriramShanbhag/shortify/issues"
+  },
+  "homepage": "https://github.com/ShriramShanbhag/shortify#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "knex": "^3.1.0",
+    "pg": "^8.18.0",
+    "redis": "^5.10.0",
+    "zod": "^4.3.6"
+  }
+}
