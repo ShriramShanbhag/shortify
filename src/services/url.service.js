@@ -1,6 +1,6 @@
 import { encode } from "zod";
-import { createUrl, findByShortCode, updateShortCode } from "../repositories/url.repository";
-import { withTransaction } from "../utils/transactions";
+import { createUrl, findByShortCode, updateShortCode } from "../repositories/url.repository.js";
+import { withTransaction } from "../utils/transactions.js";
 
 const UrlService = {
     shorten: async (originalURL) => {

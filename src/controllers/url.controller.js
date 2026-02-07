@@ -1,4 +1,4 @@
-import UrlService from "../services/url.service";
+import UrlService from "../services/url.service.js";
 export const shorten = async (req, res, next) => {
     try {
         const { originalURL } = req.body;

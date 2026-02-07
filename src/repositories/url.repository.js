@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import {db} from '../config/db.js';
 
 const findByShortCode = async (shortCode) => {
     const result = await db('urls').where({ short_code: shortCode }).first();
