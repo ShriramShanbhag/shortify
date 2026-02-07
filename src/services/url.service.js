@@ -4,7 +4,7 @@ import { encode } from "../utils/base62.js";
 
 const UrlService = {
     shorten: async (originalURL) => {
-        const existingURL = await findByOriginalUrl({ original_url: originalURL });
+        const existingURL = await findByOriginalUrl(originalURL);
         if(existingURL) return existingURL;
 
         return await withTransaction(async (trx) => {
