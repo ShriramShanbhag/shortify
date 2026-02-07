@@ -1,10 +1,9 @@
 import express from 'express';
+import router from './src/routes';
 
 const app = express();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the URL Shortener Service!');
-});
+app.use('/', router);
 
 export default app;
