@@ -1,10 +1,10 @@
 import { encode } from "zod";
-import { createUrl, findByShortCode, updateShortCode } from "../repositories/url.repository.js";
+import { createUrl, findByOriginalUrl, findByShortCode, updateShortCode } from "../repositories/url.repository.js";
 import { withTransaction } from "../utils/transactions.js";
 
 const UrlService = {
     shorten: async (originalURL) => {
-        const existingURL = await UrlModel.findOne({ original_url: originalURL });
+        const existingURL = await findByOriginalUrl({ original_url: originalURL });
         if(existingURL) return existingURL;
 
         return await withTransaction(async (trx) => {
