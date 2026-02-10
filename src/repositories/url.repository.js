@@ -1,12 +1,14 @@
 import {db} from '../config/db.js';
 
-const findByShortCode = async (shortCode) => {
-    const result = await db('urls').where({ short_code: shortCode }).first();
+const findByShortCode = async (shortCode, trx) => {
+    const queryBuilder = trx || db;
+    const result = await queryBuilder('urls').where({ short_code: shortCode }).first();
     return result ? result.original_url : null;
 }
 
-const findByOriginalUrl = async (originalUrl) => {
-    const result = await db('urls').where({ original_url: originalUrl }).first();
+const findByOriginalUrl = async (originalUrl, trx) => {
+    const queryBuilder = trx || db;
+    const result = await queryBuilder('urls').where({ original_url: originalUrl }).first();
     return result || null;
 }
 
@@ -21,4 +23,8 @@ const updateShortCode = async (id, shortCode, trx) => {
     await queryBuilder('urls').where({ id }).update({ short_code: shortCode });
 }
 
-export { findByShortCode, findByOriginalUrl, createUrl, updateShortCode };
+const incrementVisitCount = async (id) => {
+    await db('urls').where({ id }).increment('visit_count', 1);
+}
+
+export { findByShortCode, findByOriginalUrl, createUrl, updateShortCode, incrementVisitCount };

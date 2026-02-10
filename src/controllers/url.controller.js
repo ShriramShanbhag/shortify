@@ -12,8 +12,10 @@ export const shorten = async (req, res, next) => {
 export const redirect = async (req, res, next) => {
     try {
         const { code } = req.params;
+        const ip = req.ip || req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        const userAgent = req.headers['user-agent'] || 'Unknown';
         if(!code) return res.status(400).json({ error: 'Short code is required' });
-        const originalURL = await UrlService.getOriginal(code);
+        const originalURL = await UrlService.getOriginal(code, ip, userAgent);
         if(!originalURL) return res.status(404).json({ error: 'URL not found' });
         res.redirect(302, originalURL);
     } catch (error) {

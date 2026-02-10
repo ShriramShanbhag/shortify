@@ -1,6 +1,7 @@
 import { createUrl, findByOriginalUrl, findByShortCode, updateShortCode } from "../repositories/url.repository.js";
 import { withTransaction } from "../utils/transactions.js";
 import { encode } from "../utils/base62.js";
+import { logVisit } from "../repositories/visit.repository.js";
 
 const UrlService = {
     shorten: async (originalURL) => {
@@ -15,9 +16,12 @@ const UrlService = {
             return { ...newRecord, short_code: shortCode };
         });
     },
-    getOriginal: async (shortCode) => {
-        const originalURL  = await findByShortCode(shortCode);
-        return originalURL || null;
+    getOriginal: async (shortCode, ip, userAgent) => {
+        return await withTransaction(async (trx) => {
+            const originalURL  = await findByShortCode(shortCode, trx);
+            logVisit(originalURL.id, ip, userAgent, trx);
+            return originalURL || null;
+        });
     }
 }
 
