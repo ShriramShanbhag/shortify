@@ -1,4 +1,4 @@
-import { getVisitStats } from "../repositories/visit.repository";
+import { getVisitStats } from "../repositories/visit.repository.js";
 
 const VisitService = {
     getVisitStats: async (urlId) => {

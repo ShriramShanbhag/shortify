@@ -1,4 +1,4 @@
-import VisitService from "../services/visit.service";
+import VisitService from "../services/visit.service.js";
 const getVisitStats = async (req, res, next) => {
     try {
         const { urlId } = req.params;
