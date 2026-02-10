@@ -3,7 +3,7 @@ import {db} from '../config/db.js';
 const findByShortCode = async (shortCode, trx) => {
     const queryBuilder = trx || db;
     const result = await queryBuilder('urls').where({ short_code: shortCode }).first();
-    return result ? result.original_url : null;
+    return result ? result : null;
 }
 
 const findByOriginalUrl = async (originalUrl, trx) => {

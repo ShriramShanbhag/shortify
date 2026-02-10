@@ -17,11 +17,11 @@ const UrlService = {
         });
     },
     getOriginal: async (shortCode, ip, userAgent) => {
-        return await withTransaction(async (trx) => {
-            const originalURL  = await findByShortCode(shortCode, trx);
-            logVisit(originalURL.id, ip, userAgent, trx);
+            const result  = await findByShortCode(shortCode);
+            if(!result) return null;
+            const originalURL = result.original_url;
+            logVisit(result.id, ip, userAgent);
             return originalURL || null;
-        });
     }
 }
 

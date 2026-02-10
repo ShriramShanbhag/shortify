@@ -1,3 +1,5 @@
+import { db } from "../config/db.js";
+
 const logVisit = async (urlId, ipAddress, userAgent, trx) => {
     const queryBuilder = trx || db;
     await queryBuilder('visits').insert({
